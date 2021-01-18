@@ -1,11 +1,13 @@
 var tinchi = 0;
-var tinchiTH = 0;
+const tinchiTH = 1;
 var tk = [];
 var gk = 0;
 var th = [];
 var ck = 0;
 var tongket = 0;
 var td4 = 0;
+var diemTK = 0;
+var tongTC = 0;
 $(document).ready(function(){
     $('input').change(function () {
         var idcha = $(this).parent().parent().attr('id');
@@ -30,8 +32,9 @@ $(document).ready(function(){
         }
         ck = parseFloat($(`input[id=diemck_${idcha}]`).val())
         if(ck >= 0){ 
+            tongTC += tinchi;
            diemtongket(idcha)
-            diemthang4(idcha);    
+            diemthang4(idcha);
         }
     })
     function tongket1() {
@@ -42,10 +45,10 @@ $(document).ready(function(){
             tongket = tongket1();
         }
         else{
-            tinchiTH = Math.floor((tinchi/2));
             tongket = ((tongket1()*(tinchi-tinchiTH) + (tbTH()*tinchiTH))/tinchi);
         }
         tongket = tongket.toFixed(2);
+        diemTK += td4*tinchi;
         $(`#diemtongk_${id}`).val(tongket);
     }
     function diemthang4(id) {
@@ -59,6 +62,8 @@ $(document).ready(function(){
         else if(tongket >= 4) td4 = 1
         else td4 = 0;
         $(`#diem4_${id}`).val(td4)
+        $(`#tong`).text("Diem trung binh: " + diemTK/tongTC)    
+        con 
     }
 });
 
@@ -99,7 +104,6 @@ function tbTH() {
 // function diemck() {
 //     ck = parseFloat(document.getElementById('diemck').value);
 // }
-
 
 
 
